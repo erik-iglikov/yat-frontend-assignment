@@ -1,0 +1,64 @@
+.collection-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 0px;
+    gap: 32px;
+    max-width: 100%;
+    font-family: "Alliance No.1";
+    justify-content: center;
+
+    & .content {
+        margin-left: 36px;
+        display: flex;
+        flex-direction: column;
+        
+        & .name {
+            margin: 0;
+            margin-bottom: 16px;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        & .description {
+            font-family: 'Alliance No.1';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 120%;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.03em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    & .cover {
+        width: 115px;
+        height: 115px;
+        border-radius: 5.35px;
+        padding: 4.27725px;
+        border: 1.07px solid;
+        border-image-source: linear-gradient(
+            12.37deg,
+            #523DF1 8.32%,
+            rgba(142, 114, 255, 0.1) 20.63%,
+            rgba(219, 143, 255, 0.1) 41.93%,
+            #FA06FF 55.19%,
+            rgba(219, 143, 255, 0.1) 66.55%,
+            rgba(142, 114, 255, 0.1) 87.38%,
+            #523DF1 99.22%);
+        border-image-slice: 1;
+        border-image-width: 1;
+
+        & > img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+    }
+
+}

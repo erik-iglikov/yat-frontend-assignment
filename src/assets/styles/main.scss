@@ -1,0 +1,9 @@
+// Main styles file
+
+// Global styles, variables, and mixins
+@import './_variables';
+@import './_responsive';
+@import './global';
+
+// Component-specific styles
+@import 'containers/CollectionInfo/collection-info.module.scss'

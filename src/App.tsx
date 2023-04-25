@@ -1,16 +1,19 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Pod from './pages/Pod';
-import './App.css';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="App">
+      <header></header>
+
+      <main className="layout">
         <Pod />
-      </div>
+      </main>
+      
+      <footer></footer>
     </QueryClientProvider>
   );
 }
