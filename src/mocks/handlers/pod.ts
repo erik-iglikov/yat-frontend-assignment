@@ -1,19 +1,16 @@
 import { rest } from 'msw';
 import { PodType, TokenType, OwnerType, AssetType, CollectionType, TransactionType, StatsType, VolumeType, FloorPriceType } from 'types/index';
 import { randomNumber, randomPick, randomIsoDate, randomOwner, randomAsset, randomCollection } from './randomizingUtils';
+import { log } from 'console';
 
 export const pod = rest.get('http://mock-server/collection/test', (req, res, ctx) => {
   // Parse request parameters
   const params = new URLSearchParams(req.url.search);
-  const categoryFilter = params.get('category') || '';
-  const colorFilter = params.get('color') || '';
+  const searchTerm = params.get('search_term') || '';
   const sortField = params.get('sort_field') || 'date';
   const sortOrder = params.get('sort_order') || 'asc';
   const page = parseInt(params.get('page') || '1', 10);
   const pageSize = parseInt(params.get('page_size') || '10', 10);
-
-  // Utility functions for generating random data
-  // ... (keep your existing utility functions here) ...
 
   // Generate tokens with filtering, sorting, and pagination
   function generateTokens(limit: number) {
@@ -35,12 +32,13 @@ export const pod = rest.get('http://mock-server/collection/test', (req, res, ctx
     // Apply filters
     let filteredTokens = tokens.filter((token) => {
       return (
-        (!categoryFilter || token.collection.name === categoryFilter)
+        (!searchTerm || token.collection.name.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     });
-
+    
     // Apply sorting
     filteredTokens.sort((a: TokenType, b: TokenType) => {
+      console.log('-----', sortField, sortOrder)
       const valueA = (a.transaction as { [key: string]: any })[sortField];
       const valueB = (b.transaction as { [key: string]: any })[sortField];
 
@@ -48,13 +46,15 @@ export const pod = rest.get('http://mock-server/collection/test', (req, res, ctx
       if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
       return 0;
     });
+    console.log('----', filteredTokens)
+
 
     // Apply pagination
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const paginatedTokens = filteredTokens.slice(startIndex, endIndex);
 
-    return paginatedTokens;
+    return filteredTokens;
   }
 
   return res(
