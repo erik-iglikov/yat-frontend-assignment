@@ -1,0 +1,40 @@
+.navigation-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    height: 48px;
+    padding: 28px 0 28px 0;
+
+    & .button-wrapper {
+        & .icon-button {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 36px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        &:last-child {
+            background:
+                linear-gradient(240.45deg, rgba(255, 255, 255, 0.4) -6.9%, rgba(255, 255, 255, 0) 26.62%) padding-box,
+                linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%) border-box;
+            border: 1px solid transparent;
+            border-radius: 36px;
+
+            & .icon-button {
+                &:last-child {
+                    background: linear-gradient(180deg, #3F3B58 0%, #221A25 100%),
+                        linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%),
+                        linear-gradient(240.45deg, rgba(255, 255, 255, 0.4) -6.9%, rgba(255, 255, 255, 0) 26.62%);
+                }
+            }
+        }
+    }
+
+}

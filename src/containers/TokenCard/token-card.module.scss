@@ -1,0 +1,177 @@
+@import "assets/styles/_variables";
+
+.token-card {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    position: relative;
+    background:
+        linear-gradient($background-color, $background-color) padding-box,
+        linear-gradient(12.37deg, #523df1 8.32%, rgba(142, 114, 255, 0.1) 20.63%, rgba(219, 143, 255, 0.1) 41.93%, #fa06ff 55.19%, rgba(219, 143, 255, 0.1) 66.55%, rgba(142, 114, 255, 0.1) 87.38%, #523df1 99.22%) border-box;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 4px;
+    width: calc(25% - 24px);
+    flex-grow: 1;
+
+    & .image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding-bottom: 86.84%;
+
+        &>img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        & .badge {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            height: 28px;
+            width: fit-content;
+            padding: 0 8px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(18.7316px);
+            border-radius: 5px;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+    }
+
+    & .sale-badge {
+        position: absolute;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        line-height: 16px;
+        height: 28px;
+
+        color: #e8f8ee;
+        background: radial-gradient(102.5% 1778.81% at 102.93% 143.75%, #000000 0%, #31b3b3 100%);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 20.4345px rgba(61, 241, 165, 0.35), inset 0px 0px 25.5431px rgba(67, 197, 119, 0.6);
+        border-radius: 8px;
+
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+        font-size: 12px;
+        font-weight: 700;
+
+        left: 8px;
+        bottom: 0;
+        transform: translateY(50%);
+        padding-left: 8px;
+        padding-right: 8px;
+
+        & .sale-badge-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &>svg {
+                height: 12px;
+                width: 12px;
+                margin: 0 2px;
+            }
+        }
+    }
+
+    & .token-details {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 16px 12px;
+        gap: 4px;
+        isolation: isolate;
+        background: radial-gradient(113.75% 307.5% at 36.25% 32.5%, #1D1B2B 0%, #090719 100%) border-box;
+
+        & .collection-title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        & .collection-name {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.2px;
+            background-image: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(90.19deg, #FFFFFF 20.16%, rgba(255, 255, 255, 0) 92.92%);
+            background-clip: text;
+            color: transparent;
+            opacity: 0.5;
+        }
+    }
+
+    & .token-owner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+
+        height: 30px;
+        background: radial-gradient(39.62% 142.82% at 67.14% 50.58%, #3a3367 0%, #1b1929 100%);
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        padding: 16px;
+
+        & .token-owner-wrapper {
+            box-sizing: border-box;
+
+            & .token-owner-info {
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0px;
+                height: 32px;
+
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+
+                & .yat {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 6px 10px;
+                    gap: 2px;
+                    height: 32px;
+                    background: linear-gradient(0deg, $color-gray, $color-gray), linear-gradient(180deg, #232131 0%, #0D0B0E 100%);
+                    background-blend-mode: soft-light, normal;
+                    border-radius: 50px;
+                }
+
+                & .twitter {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 0px 8px 0px 4px;
+                    gap: 1px;
+
+                    &>a {
+                        text-decoration: none;
+                        background-clip: text;
+                        color: transparent;
+                        background-image: linear-gradient(0deg, #1D9BF0, #1D9BF0), linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+                    }
+                }
+            }
+        }
+    }
+
+}

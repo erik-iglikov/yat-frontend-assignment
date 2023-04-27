@@ -1,3 +1,4 @@
+// Globally applied styles
 @import './variables';
 
 @font-face {
@@ -6,6 +7,7 @@
         url("../../../public/fonts/AllianceNo1-Regular.woff2") format("woff2");
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
@@ -14,6 +16,7 @@
         url("../../../public/fonts/TuskerGrotesk-4500Medium.woff2") format("woff2");
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
 }
 
 body {
@@ -29,14 +32,38 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.layout {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $background-color;
-    color: $text-color;
-    font-size: calc(10px + 2vmin);
-    min-height: 100vh;
-    text-align: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre {
+    margin: 0;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 14px;
 }
