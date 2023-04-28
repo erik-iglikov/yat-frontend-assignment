@@ -1,20 +1,20 @@
-@import 'assets/styles/variables';
+@import "assets/styles/variables";
 
 .main-layout {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    // justify-content: center;
-    background-color: $background-color;
-    color: $color-white;
-    min-height: 100vh;
-    width: 100%;
-    text-align: left;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // justify-content: center;
+  background-color: $background-color;
+  color: $color-white;
+  min-height: 100vh;
+  width: 100%;
+  text-align: left;
 
-    &>main {
-        width: 100%;
-    }
-    &>header {
-        height: 104px;
-    }
+  & > main {
+    width: 100%;
+  }
+  & > header {
+    height: 104px;
+  }
 }

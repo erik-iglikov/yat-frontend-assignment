@@ -8,10 +8,10 @@ import { filterSortAndPaginateTokens } from './filterSortAndPaginateTokens';
 const tokens: TokenType[] = generateTokens(100);
 
 export const getPod = rest.get('http://mock-server/collection/pod', (req, res, ctx) => {
-
   const pod: PodType = {
     name: 'Test Pod',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
     cover: randomAsset(),
     owner: randomOwner(),
     stats: {
@@ -29,18 +29,18 @@ export const getPod = rest.get('http://mock-server/collection/pod', (req, res, c
     tokens: tokens,
   };
 
-  return res(ctx.status(200), ctx.json(pod))
-})
+  return res(ctx.status(200), ctx.json(pod));
+});
 
-export const getTokens = rest.get("http://mock-server/collection/tokens", (req, res, ctx) => {
+export const getTokens = rest.get('http://mock-server/collection/tokens', (req, res, ctx) => {
   // Parse request parameters
   const params = new URLSearchParams(req.url.search);
-  const searchTerm = params.get("search_term") || "";
-  const sortField = params.get("sort_field") || "date";
-  const sortOrder = params.get("sort_order") || "asc";
-  const ownerFilter = params.get("owner") || "";
-  const page = parseInt(params.get("page") || "1", 10);
-  const pageSize = parseInt(params.get("page_size") || "12", 10); // 12 tokens is 3 rows on desktop
+  const searchTerm = params.get('search_term') || '';
+  const sortField = params.get('sort_field') || 'date';
+  const sortOrder = params.get('sort_order') || 'asc';
+  const ownerFilter = params.get('owner') || '';
+  const page = parseInt(params.get('page') || '1', 10);
+  const pageSize = parseInt(params.get('page_size') || '12', 10); // 12 tokens is 3 rows on desktop
 
   // Filter, sort, and paginate tokens
   const result = filterSortAndPaginateTokens(
@@ -50,7 +50,7 @@ export const getTokens = rest.get("http://mock-server/collection/tokens", (req, 
     sortOrder,
     ownerFilter,
     page,
-    pageSize
+    pageSize,
   );
 
   return res(ctx.status(200), ctx.json(result));

@@ -1,59 +1,68 @@
 @import "assets/styles/_variables";
 
 .pod-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  padding: 0px;
+  gap: 32px;
+  max-width: 100%;
+  width: 45%;
+  flex-basis: 50%;
+  height: 115px;
+
+  & .content {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    padding: 0px;
-    gap: 32px;
-    max-width: 100%;
-    width: 45%;
-    flex-basis: 50%;
+    flex-direction: column;
+    max-width: 480px;
+
+    & .name {
+      margin-bottom: 16px;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    & .description {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      letter-spacing: -0.03em;
+      color: $color-gray;
+    }
+  }
+
+  & .cover-container {
+    width: 115px;
     height: 115px;
+    box-sizing: border-box;
+    object-fit: cover;
 
-    & .content {
-        display: flex;
-        flex-direction: column;
-        max-width: 480px;
+    background: linear-gradient($background-color, $background-color) padding-box,
+      linear-gradient(
+          12.37deg,
+          #523df1 8.32%,
+          rgba(142, 114, 255, 0.1) 20.63%,
+          rgba(219, 143, 255, 0.1) 41.93%,
+          #fa06ff 55.19%,
+          rgba(219, 143, 255, 0.1) 66.55%,
+          rgba(142, 114, 255, 0.1) 87.38%,
+          #523df1 99.22%
+        )
+        border-box;
+    border: 1.07px solid transparent;
+    border-radius: 5.35px;
+    padding: 4.27725px;
 
-        & .name {
-            margin-bottom: 16px;
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.03em;
-        }
-
-        & .description {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.03em;
-            color: $color-gray;
-        }
+    & .cover {
+      width: stretch;
+      border-radius: 4px;
+      object-fit: cover;
     }
-
-    & .cover-container {
-        width: 115px;
-        height: 115px;
-        box-sizing: border-box;
-        object-fit: cover;
-
-        background:
-            linear-gradient($background-color, $background-color) padding-box,
-            linear-gradient(12.37deg, #523df1 8.32%, rgba(142, 114, 255, 0.1) 20.63%, rgba(219, 143, 255, 0.1) 41.93%, #fa06ff 55.19%, rgba(219, 143, 255, 0.1) 66.55%, rgba(142, 114, 255, 0.1) 87.38%, #523df1 99.22%) border-box;
-        border: 1.07px solid transparent;
-        border-radius: 5.35px;
-        padding: 4.27725px;
-
-        & .cover {
-            width: stretch;
-            border-radius: 4px;
-            object-fit: cover;
-        }
-    }
+  }
 }

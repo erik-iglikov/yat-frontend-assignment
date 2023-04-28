@@ -1,40 +1,48 @@
-@import 'assets/styles/_variables.scss';
+@import "assets/styles/_variables.scss";
 
 .stat-card {
-    padding: 16px 20px;
-    width: 118px;
+  padding: 16px 20px;
+  width: 118px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-transform: uppercase;
+
+  background: linear-gradient($background-color, $background-color) padding-box,
+    linear-gradient(
+        290.96deg,
+        rgba(255, 255, 255, 0.4) 0.58%,
+        rgba(255, 255, 255, 0.08) 14.03%,
+        rgba(255, 255, 255, 0.08) 46.93%,
+        rgba(255, 255, 255, 0.24) 55.41%,
+        rgba(255, 255, 255, 0.08) 65.88%,
+        rgba(255, 255, 255, 0.08) 85.82%,
+        rgba(255, 255, 255, 0.4) 96.28%
+      )
+      border-box;
+  border: 1.07px solid transparent;
+  border-radius: 16px;
+
+  box-shadow: 0px 10.8px 52.8px rgba(82, 61, 241, 0.05);
+
+  & .label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  & .value {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-transform: uppercase;
+    flex-direction: row;
+    align-items: center;
+    font-weight: normal;
+    letter-spacing: -1.5px;
 
-    background:
-        linear-gradient($background-color, $background-color) padding-box,
-        linear-gradient(290.96deg, rgba(255, 255, 255, 0.4) 0.58%, rgba(255, 255, 255, 0.08) 14.03%, rgba(255, 255, 255, 0.08) 46.93%, rgba(255, 255, 255, 0.24) 55.41%, rgba(255, 255, 255, 0.08) 65.88%, rgba(255, 255, 255, 0.08) 85.82%, rgba(255, 255, 255, 0.4) 96.28%) border-box;
-    border: 1.07px solid transparent;
-    border-radius: 16px;
-
-    box-shadow: 0px 10.8px 52.8px rgba(82, 61, 241, 0.05);
-
-    & .label {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 16px;
+    & h3 {
+      font-size: 35px;
+      line-height: 44px;
     }
-
-    & .value {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-weight: normal;
-        letter-spacing: -1.5px;
-
-        & h3 {
-            font-size: 35px;
-            line-height: 44px;
-        }
-    }
-
+  }
 }

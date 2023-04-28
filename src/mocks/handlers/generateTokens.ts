@@ -1,4 +1,10 @@
-import { randomCollection, randomAsset, randomIsoDate, randomOwner, randomNumber } from './randomizingUtils';
+import {
+  randomCollection,
+  randomAsset,
+  randomIsoDate,
+  randomOwner,
+  randomNumber,
+} from './randomizingUtils';
 
 export function generateTokens(limit: number) {
   const tokens = [];

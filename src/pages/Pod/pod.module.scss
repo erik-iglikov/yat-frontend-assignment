@@ -1,153 +1,152 @@
 @import "assets/styles/_variables";
 
 .main-page {
-    max-width: 1441px;
-    padding: 58px 0;
-    box-sizing: border-box;
+  max-width: 1441px;
+  padding: 58px 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+
+  & .loading-spinner {
     margin: 0 auto;
+  }
 
-    & .loading-spinner {
-        margin: 0 auto;
-    }
-    
-    & .collection-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  & .collection-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    & .collection-filters {
-        margin-top: 106px;
-        display: flex;
-        row-gap: 24px;
-        flex-direction: column;
+  & .collection-filters {
+    margin-top: 106px;
+    display: flex;
+    row-gap: 24px;
+    flex-direction: column;
 
-        & .title-search-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
+    & .title-search-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
 
-            & .search-wrapper {
-                position: relative;
-                display: inline-flex;
-                align-items: center;
-                width: 100%;
-                height: 37px;
-                max-width: 354px;
+      & .search-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        height: 37px;
+        max-width: 354px;
 
-                &>svg {
-                    left: 14px;
-                    position: absolute;
-                    cursor: pointer;
-                }
-
-                &>input {
-                    &:focus {
-                        outline: 1px solid rgba(255, 255, 255, 0.4);
-                    }
-
-                    outline: none;
-                    width: 100%;
-                    box-sizing: border-box;
-                    height: 37px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    padding: 10px 14px 10px 42px;
-                    gap: 8px;
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 50px;
-                    border: 0;
-                    color: #fff;
-                }
-            }
-
-            &>h3 {
-                font-family: 'Alliance No.1';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 36px;
-                line-height: 120%;
-                letter-spacing: -0.03em;
-
-            }
+        & > svg {
+          left: 14px;
+          position: absolute;
+          cursor: pointer;
         }
 
-        & .filter-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+        & > input {
+          &:focus {
+            outline: 1px solid rgba(255, 255, 255, 0.4);
+          }
 
-            & .left-filters {
-                display: flex;
-                gap: 10px;
-                height: 41px;
-
-                & .switch-button {
-                    display: inline-flex;
-                    background: rgba(255, 255, 255, 0.1);
-                    border-radius: 40px;
-
-                    &>button {
-                        width: 40px;
-                        height: 40px;
-                        padding: 14px 15px;
-                        background: transparent;
-
-                        &:disabled {
-                            background: #523DF1;
-                        }
-                    }
-                }
-            }
-
-            & .right-filters {
-                display: flex;
-                gap: 10px;
-                width: 354px;
-                height: 41px;
-            }
-
-            & button {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                padding: 10px 20px;
-                gap: 6px;
-
-                border: 0;
-                border-radius: 24px;
-
-                font-style: normal;
-                font-weight: 700;
-                font-size: 14px;
-                line-height: 20px;
-
-                letter-spacing: -0.2px;
-                color: $color-gray;
-
-                background: rgba(255, 255, 255, 0.05);
-                cursor: pointer;
-                outline: none;
-
-                &:disabled {
-                    cursor: default;
-                    background: #523DF1;
-                    color: $color-white;
-                }
-            }
+          outline: none;
+          width: 100%;
+          box-sizing: border-box;
+          height: 37px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 14px 10px 42px;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 50px;
+          border: 0;
+          color: #fff;
         }
+      }
+
+      & > h3 {
+        font-family: "Alliance No.1";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 120%;
+        letter-spacing: -0.03em;
+      }
     }
 
-    & .collection-tokens {
+    & .filter-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      & .left-filters {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        gap: 10px;
+        height: 41px;
+
+        & .switch-button {
+          display: inline-flex;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 40px;
+
+          & > button {
+            width: 40px;
+            height: 40px;
+            padding: 14px 15px;
+            background: transparent;
+
+            &:disabled {
+              background: #523df1;
+            }
+          }
+        }
+      }
+
+      & .right-filters {
+        display: flex;
+        gap: 10px;
+        width: 354px;
+        height: 41px;
+      }
+
+      & button {
+        display: flex;
         flex-direction: row;
-        flex-basis: calc(25% - 10px);
-        margin-top: 64px;
-        row-gap: 20px;
-        column-gap: 16px;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 6px;
+
+        border: 0;
+        border-radius: 24px;
+
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+
+        letter-spacing: -0.2px;
+        color: $color-gray;
+
+        background: rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        outline: none;
+
+        &:disabled {
+          cursor: default;
+          background: #523df1;
+          color: $color-white;
+        }
+      }
     }
+  }
+
+  & .collection-tokens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-basis: calc(25% - 10px);
+    margin-top: 64px;
+    row-gap: 20px;
+    column-gap: 16px;
+  }
 }

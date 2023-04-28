@@ -1,10 +1,10 @@
-import { NavigationBar } from "components/NavigationBar";
+import { NavigationBar } from 'components/NavigationBar';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-    return (
+  return (
     <section className="main-layout">
       <header>
-          <NavigationBar />
+        <NavigationBar />
       </header>
 
       <main>{children}</main>
@@ -12,4 +12,4 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <footer></footer>
     </section>
   );
-}
+};

@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 
 export function useInfiniteScroll<T extends HTMLElement>(
   callback: () => void,
-  threshold = 0
+  threshold = 0,
 ): MutableRefObject<T | null> {
   const targetRef = useRef<T | null>(null);
 

@@ -1,19 +1,18 @@
 .stats {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 5px;
-    max-width: 100%;
-    font-family: "Alliance No.1";
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 5px;
+  max-width: 100%;
+  font-family: "Alliance No.1";
+  justify-content: center;
 
-    & .label {
-        font-family: "Tusker Grotesk";
-    }
+  & .label {
+    font-family: "Tusker Grotesk";
+  }
 
-    & .value {
-        text-shadow: 0px 0px 19.2px rgba(255, 255, 255, 0.75), 0px 0px 19.2px #523DF1;
-    }
-
+  & .value {
+    text-shadow: 0px 0px 19.2px rgba(255, 255, 255, 0.75), 0px 0px 19.2px #523df1;
+  }
 }

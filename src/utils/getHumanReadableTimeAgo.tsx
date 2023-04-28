@@ -4,7 +4,7 @@ import moment from 'moment';
  * Returns a formatted string that represents how long ago an action happened, based on the difference between the current time and the given action date.
  * @param {string} actionDate - The date of when the action happened.
  * @returns {string} - A formatted string of how long ago the action happened (e.g. "5H AGO", "1D AGO").
- */ 
+ */
 export const getHumanReadableTimeAgo = (actionDate: string): string => {
   const now: moment.Moment = moment();
   const actionDateObj: moment.Moment = moment(actionDate);
