@@ -42,6 +42,10 @@ export const getTokens = rest.get('http://mock-server/collection/tokens', (req, 
   // Filter, sort, and paginate tokens
   const filteredTokens = filterSortAndPaginateTokens(tokens, searchTerm, sortField, sortOrder, page, pageSize);
 
+
+
+  console.log('filteredTokens', filteredTokens)
+
   return res(
     ctx.status(200),
     ctx.json(filteredTokens)
@@ -49,16 +53,7 @@ export const getTokens = rest.get('http://mock-server/collection/tokens', (req, 
 });
 
 
-/**
- * 
- * @param tokens 
- * @param searchTerm 
- * @param sortField 
- * @param sortOrder 
- * @param page 
- * @param pageSize 
- * @returns 
- */
+
 function filterSortAndPaginateTokens(tokens: TokenType[], searchTerm: string, sortField: string, sortOrder: string, page: number, pageSize: number) {
 
   // Apply filters
@@ -68,7 +63,7 @@ function filterSortAndPaginateTokens(tokens: TokenType[], searchTerm: string, so
     );
   });
 
-  // Apply sorting
+   // Apply sorting
   filteredTokens.sort((a: TokenType, b: TokenType) => {
     const valueA = (a.transaction as { [key: string]: any })[sortField];
     const valueB = (b.transaction as { [key: string]: any })[sortField];

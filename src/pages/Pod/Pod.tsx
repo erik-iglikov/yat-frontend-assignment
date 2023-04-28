@@ -11,8 +11,8 @@ import { Icon } from 'components/Icon';
 
 export const Pod = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortField, setSortField] = useState('recency');
-    const [sortOrder, setSortOrder] = useState('asc');
+    const [sortField, setSortField] = useState('date');
+    const [sortOrder, setSortOrder] = useState('desc');
     const [page, setPage] = useState(1);
     const [tokens, setTokens] = useState([]);
 
@@ -33,16 +33,13 @@ export const Pod = () => {
         const url = `http://mock-server/collection/tokens?${params.toString()}`;
         const res = await fetch(url);
         const data = await res.json();
-        console.log('---res.json()', data)
 
         return data;
     };
 
     const collection = useQuery('collectionInfo', fetchCollection);
 
-    const tokensQuery = useQuery(['tokens', searchTerm, sortField, sortOrder, page], fetchTokens, {
-        enabled: false,
-    });
+    const tokensQuery = useQuery(['tokens', searchTerm, sortField, sortOrder, page], fetchTokens);
 
     useEffect(() => {
         if (collection.isSuccess) {
@@ -58,7 +55,7 @@ export const Pod = () => {
 
     // Fetch tokens when searchTerm, sortField or sortOrder changes
     useEffect(() => {
-        if (searchTerm || sortField !== 'recency' || sortOrder !== 'asc') {
+        if (searchTerm || sortField !== 'date' || sortOrder !== 'asc') {
             tokensQuery.refetch();
         }
     }, [searchTerm, sortField, sortOrder]);
@@ -66,12 +63,6 @@ export const Pod = () => {
     if (collection.isLoading) {
         return <div>Loading...</div>;
     }
-
-
-    //   if (collection.error || tokens.error) {
-    //     return <div>Error: {(collection.error || tokens.error).message}</div>;
-    //   }
-
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchTerm(e.target.value);
@@ -115,17 +106,17 @@ export const Pod = () => {
                 <section className='filter-row'>
                     <section className='left-filters'>
                         <div className='switch-button'>
-                            <button disabled={sortOrder === 'asc'} onClick={() => handleSortOrderChange('asc')}>
+                            <button disabled={sortOrder === 'desc'} onClick={() => handleSortOrderChange('desc')}>
                                 <Icon iconName={ICON_NAMES.ARROW_UP} size='small' />
                             </button>
-                            <button disabled={sortOrder === 'desc'} onClick={() => handleSortOrderChange('desc')}>
+                            <button disabled={sortOrder === 'asc'} onClick={() => handleSortOrderChange('asc')}>
                                 <Icon iconName={ICON_NAMES.ARROW_DOWN} size='small' />
                             </button>
                         </div>
-                        <button disabled={sortField === 'recency'} onClick={() => handleSortFieldChange('recency')}>
+                        <button disabled={sortField === 'date'} onClick={() => handleSortFieldChange('date')}>
                             Recency
                         </button>
-                        <button disabled={sortField === 'price'} onClick={() => handleSortFieldChange('price')}>
+                        <button disabled={sortField === 'amount'} onClick={() => handleSortFieldChange('amount')}>
                             Price
                         </button>
                     </section>
