@@ -12,7 +12,7 @@ import { Icon } from 'components/Icon';
 export const Pod = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortField, setSortField] = useState('date');
-    const [sortOrder, setSortOrder] = useState('desc');
+    const [sortOrder, setSortOrder] = useState('asc');
     const [page, setPage] = useState(1);
     const [tokens, setTokens] = useState([]);
 
@@ -106,10 +106,10 @@ export const Pod = () => {
                 <section className='filter-row'>
                     <section className='left-filters'>
                         <div className='switch-button'>
-                            <button disabled={sortOrder === 'desc'} onClick={() => handleSortOrderChange('desc')}>
+                            <button disabled={sortOrder === 'asc'} onClick={() => handleSortOrderChange('asc')}>
                                 <Icon iconName={ICON_NAMES.ARROW_UP} size='small' />
                             </button>
-                            <button disabled={sortOrder === 'asc'} onClick={() => handleSortOrderChange('asc')}>
+                            <button disabled={sortOrder === 'desc'} onClick={() => handleSortOrderChange('desc')}>
                                 <Icon iconName={ICON_NAMES.ARROW_DOWN} size='small' />
                             </button>
                         </div>
