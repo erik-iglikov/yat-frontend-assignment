@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 
 import { PodInfo } from 'containers/PodInfo';
 import { TokenCard } from 'containers/TokenCard/TokenCard';
@@ -18,7 +18,8 @@ export const Pod = () => {
     const [sortOrder, setSortOrder] = useState('asc');
     const [page, setPage] = useState(1);
     const [tokens, setTokens] = useState([]);
-    
+    const [ownerFilter, setOwnerFilter] = useState('');
+
     const fetchCollection = async () => {
         const url = `http://mock-server/collection/pod`;
         const res = await fetch(url);
@@ -30,6 +31,7 @@ export const Pod = () => {
             search_term: searchTerm,
             sort_field: sortField,
             sort_order: sortOrder,
+            owner: ownerFilter,
             page: page.toString(),
         });
 
@@ -40,9 +42,9 @@ export const Pod = () => {
         return data;
     };
 
-    const collection = useQuery('collectionInfo', fetchCollection);
+    const collection = useQuery('collection', fetchCollection);
 
-    const tokensQuery = useQuery(['tokens', debouncedSearchTerm, sortField, sortOrder, page], fetchTokens);
+    const tokensQuery = useQuery(['tokens', debouncedSearchTerm, sortField, sortOrder, ownerFilter, page], fetchTokens);
 
     useEffect(() => {
         if (collection.isSuccess) {
@@ -57,12 +59,12 @@ export const Pod = () => {
     }, [tokensQuery]);
 
     
-    // Fetch tokens when searchTerm, sortField or sortOrder changes
-    useEffect(() => {
-        if (debouncedSearchTerm || sortField !== 'date' || sortOrder !== 'asc') {
-            tokensQuery.refetch();
-        }
-    }, [debouncedSearchTerm, sortField, sortOrder]);
+    // // Fetch tokens when searchTerm, sortField or sortOrder changes
+    // useEffect(() => {
+    //     if (debouncedSearchTerm || sortField !== 'date' || sortOrder !== 'asc') {
+    //         tokensQuery.refetch();
+    //     }
+    // }, [debouncedSearchTerm, sortField, sortOrder, tokensQuery]);
 
     // if (collection.isLoading) {
     //     return <div>Loading...</div>;
@@ -79,6 +81,11 @@ export const Pod = () => {
     const handleSortOrderChange = (order: string): void => {
         setSortOrder(order);
     };
+
+    const handleOwnerFilterChange = (owner: string): void => {
+        console.log('owner', owner);
+        setOwnerFilter(owner);
+    }
 
     const handlePageChange = (newPage: number): void => {
         setPage(newPage);
@@ -126,10 +133,10 @@ export const Pod = () => {
                     </section>
 
                     <section className='right-filters'>
-                        <button disabled>
+                        <button disabled={ownerFilter === ''} onClick={() => handleOwnerFilterChange('')}>
                             All items
                         </button>
-                        <button>
+                        <button disabled={ownerFilter === collection.data?.owner.yat} onClick={() => handleOwnerFilterChange(collection.data?.owner.yat)}>
                             My items
                         </button>
                         <button disabled>

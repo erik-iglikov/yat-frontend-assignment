@@ -9,6 +9,7 @@ export type PodType = {
     name: string;
     description: string;
     cover: AssetType,
+    owner: OwnerType,
     tokens: TokenType[];
     stats: StatsType;
 };
