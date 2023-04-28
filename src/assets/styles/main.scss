@@ -8,13 +8,11 @@
 // Page-specific styles
 @import "pages/Pod/pod.module.scss";
 
-// Container-specific styles
-@import "containers/PodInfo/pod-info.module.scss";
-@import "containers/TokenCard/token-card.module.scss";
-@import "containers/PodStats/pod-stats.module.scss";
-@import "containers/Layout/layout.module.scss";
-
 // Component-specific styles
+@import "components/PodInfo/pod-info.module.scss";
+@import "components/TokenCard/token-card.module.scss";
+@import "components/PodStats/pod-stats.module.scss";
+@import "components/Layout/layout.module.scss";
 @import "components/StatCard/stat-card.module.scss";
 @import "components/NavigationBar/navigation-bar.module.scss";
 @import "components/Icon/icon.module.scss";

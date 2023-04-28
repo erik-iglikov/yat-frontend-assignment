@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useQuery, useInfiniteQuery } from 'react-query';
 
-import { PodInfo } from 'containers/PodInfo';
-import { TokenCard } from 'containers/TokenCard/TokenCard';
-import { PodStats } from 'containers/PodStats';
+import { PodInfo } from 'components/PodInfo';
+import { TokenCard } from 'components/TokenCard';
+import { PodStats } from 'components/PodStats';
 
 import './pod.module.scss';
 import ICON_NAMES from 'constants/iconNames';

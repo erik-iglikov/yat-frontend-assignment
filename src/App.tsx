@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Pod } from 'pages/Pod';
-import { Layout } from 'containers/Layout';
+import { Layout } from 'components/Layout';
 
 const queryClient = new QueryClient();
 
