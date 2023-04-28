@@ -8,7 +8,7 @@ export const PodInfo = ({ data }: { data: PodType }) => {
             <div className="cover-container">
                 <img
                     className='cover'
-                    src={data?.tokens[0].asset.url}
+                    src={data?.cover.url}
                     alt="Collection cover" />
             </div>
 
