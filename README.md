@@ -14,7 +14,6 @@ This page contains all the information you'll need to run and work on this assig
 
 You should fork this repo to be able to work on it.
 
-
 ## 💻 Assignment
 
 ### 💣 The Problem
@@ -38,13 +37,11 @@ You're welcome to use libraries that could help you with this task. Also, feel f
 
 The data is being provided by [React Query](https://react-query-v3.tanstack.com) in combination with a [Mock Server](https://mswjs.io). The mocked responses can be modified [here](https://github.com/GabeReis/yat-frontend-assignment/blob/main/src/mocks/handlers/pod.ts).
 
-
 ### 📚 Resources
 
 - [Figma file with UI design](https://www.figma.com/file/ySw3vbGUssxB811UQY0Qsg/Collection-Page?node-id=267%3A93607&t=PLIrc087lMSf2gxs-1)
 - [React Query](https://react-query-v3.tanstack.com)
 - [Mock Service Worker](https://mswjs.io)
-
 
 ### 🌡️ What are we evaluating?
 
@@ -54,22 +51,20 @@ The data is being provided by [React Query](https://react-query-v3.tanstack.com)
 - Make sure your solution works on different scenarios (we will try to break it 😇)
 - Be creative. We love simple and clever solutions.
 
-
 ### 🚀 Above & Beyond
 
 Are there other aspects that you would consider while building this page? For example, what would you do improve this interface in terms of accessibility?
 
 If you have new ideas or cool tricks to show us, go for it!
 
-
 ### 🛑 Are You Stuck?
 
 If you can't make any progress or feel defeated, try a different approach:
+
 - Can you start with a small component in the UI? Keep iterating!
 - Is there something else you could add to make the experience more enjoyable for our users?
 
 Remember: we want to see what you are capable to do. Show off your coding and problem-solving skills. If you can't write even one single line, being a good storyteller can go a long way 🤣
-
 
 ## ▶️ Getting Started
 
@@ -77,8 +72,7 @@ Remember: we want to see what you are capable to do. Show off your coding and pr
 
 1. Fork the repository
 
-
-3. Install dependencies
+2. Install dependencies
 
 ```bash
 yarn install
@@ -96,7 +90,6 @@ You should see the following page on your browser:
 
 Use this page to build the interface. Don't worry about routes, but you're welcome to re-organize the files any way you prefer.
 
-
 🌟 You are all set!
 
 ## 🎯 What we're looking for
@@ -107,9 +100,43 @@ Use this page to build the interface. Don't worry about routes, but you're welco
 - Commit history, commit often to show your thought process
 - Tests are a plus
 
-
 ## ✉️ Get in Touch
 
 If you have questions, plese reach out to the recruiter or directly to me:
+
 - [Gabe Reis](mailto:rio@tari.com)
 
+## 💫 Implementation
+
+💻 Features Overview:
+
+1. Interface based on Figma design
+2. Reusable components where needed
+3. Filter collectibles (All items / My items)
+4. Sort by price or most recent (asc/desc)
+5. Search by keyword and ownership
+6. Infinite scrolling (more tokens on scroll)
+7. Paginated filters and sorting
+
+Some more nice to haves:
+
+1. Smooth loading states with spinners
+2. Delayed search trigger to wait for user to complete typing
+3. Put together an svg sprite for better performance and scalability
+4. Unit tests for all components
+5. Error handling for mock API and front-end
+6. Prettifier for clean code formatting
+7. Proper accessibility (added 'alt' tags)
+
+📚 Libraries and Why I Chose Them:
+
+- clsx: Dynamic and performant library for handling classNames
+- moment: Simpler Date manipulations (for human readable dates)
+- sass: SCSS to make styles more resilient for different browsers and have .module separation of concerns
+
+🚀 Possible enhancements:
+
+1. Reusing more variables in SCSS
+2. Mobile-friendly view
+3. Storybook for widely reusable components
+4. Keep the filters that user chose on reload / coming back
