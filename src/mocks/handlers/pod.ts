@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { PodType, TokenType } from 'types/PodProps';
-import { generatePod, randomAsset, randomOwner, randomTokens } from './randomizingUtils';
+import { generatePod, randomTokens } from './randomizingUtils';
 import { filterSortAndPaginateTokens } from './filterSortAndPaginateTokens';
 import { POD_API_URL, TOKENS_API_URL } from 'constants/apiUrls';
 

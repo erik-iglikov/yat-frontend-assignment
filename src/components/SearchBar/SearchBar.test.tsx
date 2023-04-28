@@ -1,6 +1,5 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import userEvent from '@testing-library/user-event';
 import { SearchBar } from './SearchBar';
 
 it('renders the SearchBar component with given props and handles input change', async () => {
