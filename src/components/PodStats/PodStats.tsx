@@ -1,12 +1,18 @@
+import clsx from 'clsx';
 import { StatCard } from 'components/StatCard';
-import { StatsType } from 'types';
-import './pod-stats.module.scss';
+import { StatsType } from 'types/PodProps';
 import { Icon } from 'components/Icon';
 import { ICON_NAMES } from 'constants/iconNames';
+import { ClassNameProps } from 'types';
+import './pod-stats.module.scss';
 
-export const PodStats = ({ data }: { data: StatsType }) => {
+type PodStatsProps = ClassNameProps & {
+  data: StatsType;
+};
+
+export const PodStats = ({ data, className }: PodStatsProps) => {
   return (
-    <section className="stats">
+    <section className={clsx('stats', className)}>
       <StatCard label="ASSETS" value={data?.tokens} />
       <StatCard label="HOLDERS" value={data?.owners} />
       <StatCard label="VOLUME" value={data?.volume?.daily} />

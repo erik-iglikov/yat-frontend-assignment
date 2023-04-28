@@ -1,8 +1,45 @@
 /**
  * This file contains utility functions for randomizing data.
  */
-import { TokenType, OwnerType, AssetType, CollectionType } from 'types/index';
+import { TokenType, OwnerType, AssetType, CollectionType, PodType } from 'types/PodProps';
 
+/**
+ * Generates a pod object with the given tokens and randomized data.
+ *
+ * @param tokens - An array of TokenType objects.
+ * @returns A PodType object with randomized data and the given tokens.
+ */
+export const generatePod = (tokens: TokenType[]): PodType => {
+  const pod: PodType = {
+    name: 'Test Pod',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo magna mauris, sed vulputate odio blandit at. Donec eleifend lectus.',
+    cover: randomAsset(),
+    owner: randomOwner(),
+    stats: {
+      tokens: 10000,
+      owners: 5257,
+      volume: {
+        daily: 98561,
+        weekly: 169234,
+        monthly: 4641231,
+      },
+      floorPrice: {
+        current: 0.515,
+      },
+    },
+    tokens: tokens,
+  };
+
+  return pod;
+};
+
+/**
+ * Generates a random number between 0 and the given max value.
+ *
+ * @param max - The maximum possible value for the random number.
+ * @returns A random number between 0 and max.
+ */
 export const randomNumber = (max: number): number => {
   return Math.floor(Math.random() * (max + 1));
 };
@@ -17,11 +54,23 @@ export const randomPick = <T>(list: T[]): T => {
   return list[randomKey];
 };
 
+/**
+ * Generates a random ISO date string between the given start and end dates.
+ *
+ * @param start - The start date for the random date range.
+ * @param end - The end date for the random date range.
+ * @returns A random ISO date string between the given start and end dates.
+ */
 export const randomIsoDate = (start: Date, end: Date) => {
   const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   return randomDate.toISOString();
 };
 
+/**
+ * Generates a random OwnerType object from a predefined list of owners.
+ *
+ * @returns A random OwnerType object.
+ */
 export const randomOwner = (): OwnerType => {
   const owners = [
     {
@@ -49,6 +98,11 @@ export const randomOwner = (): OwnerType => {
   return randomPick(owners);
 };
 
+/**
+ * Generates a random AssetType object from a predefined list of asset URLs.
+ *
+ * @returns A random AssetType object.
+ */
 export const randomAsset = (): AssetType => {
   const assets = [
     // Capsule House
@@ -100,6 +154,11 @@ export const randomAsset = (): AssetType => {
   };
 };
 
+/**
+ * Generates a random CollectionType object from a predefined list of collections.
+ *
+ * @returns A random CollectionType object.
+ */
 export const randomCollection = (): CollectionType => {
   const collections = [
     { name: 'Capsule Home' },
@@ -113,6 +172,12 @@ export const randomCollection = (): CollectionType => {
   return randomPick(collections);
 };
 
+/**
+ * Generates a list of tokens with randomized data.
+ *
+ * @param limit - The number of tokens to generate.
+ * @returns An array of tokens with randomized data.
+ */
 export const randomTokens = (limit: number): TokenType[] => {
   const tokens = [];
 

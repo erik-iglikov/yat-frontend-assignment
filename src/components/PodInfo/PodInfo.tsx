@@ -1,10 +1,16 @@
-import { PodType } from 'types';
-import './pod-info.module.scss';
+import clsx from 'clsx';
+import { PodType } from 'types/PodProps';
 import { Spinner } from 'components/Spinner';
+import './pod-info.module.scss';
+import { ClassNameProps } from 'types';
 
-export const PodInfo = ({ data }: { data: PodType }) => {
+type PodInfoProps = ClassNameProps & {
+  data: PodType;
+};
+
+export const PodInfo = ({ data, className }: PodInfoProps) => {
   return (
-    <article className="pod-info">
+    <article className={clsx('pod-info', className)}>
       <div className="cover-container">
         <div className="cover-placeholder"></div>
 

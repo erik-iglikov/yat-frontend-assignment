@@ -11,7 +11,6 @@ export const ICON_NAMES = {
   FILTER: 'icon-filter',
   ARROW_UP: 'icon-arrow-up',
   ARROW_DOWN: 'icon-arrow-down',
-  CLOSE: 'icon-close',
 } as const;
 
 export default ICON_NAMES;

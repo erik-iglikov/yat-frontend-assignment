@@ -1,0 +1,25 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 36px;
+  cursor: pointer;
+  outline: none;
+
+  padding: 10px 20px;
+  gap: 6px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.2px;
+  color: $color-gray;
+  background: rgba(255, 255, 255, 0.05);
+
+  &:disabled {
+    cursor: default;
+    background: #523df1;
+    color: $color-white;
+  }
+}

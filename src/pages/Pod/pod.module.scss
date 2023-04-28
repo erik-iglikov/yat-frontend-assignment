@@ -107,35 +107,6 @@
         width: 354px;
         height: 41px;
       }
-
-      & button {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 10px 20px;
-        gap: 6px;
-
-        border: 0;
-        border-radius: 24px;
-
-        font-style: normal;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 20px;
-
-        letter-spacing: -0.2px;
-        color: $color-gray;
-
-        background: rgba(255, 255, 255, 0.05);
-        cursor: pointer;
-        outline: none;
-
-        &:disabled {
-          cursor: default;
-          background: #523df1;
-          color: $color-white;
-        }
-      }
     }
   }
 

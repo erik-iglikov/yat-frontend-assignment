@@ -1,12 +1,18 @@
+import clsx from 'clsx';
 import { getHumanReadableTimeAgo } from 'utils/getHumanReadableTimeAgo';
 import './token-card.module.scss';
-import { TokenType } from 'types';
+import { TokenType } from 'types/PodProps';
 import ICON_NAMES from 'constants/iconNames';
 import { Icon } from 'components/Icon';
+import { ClassNameProps } from 'types';
 
-export const TokenCard = ({ data }: { data: TokenType }) => {
+type TokenCardProps = ClassNameProps & {
+  data: TokenType;
+};
+
+export const TokenCard = ({ data, className }: TokenCardProps) => {
   return (
-    <article className="token-card">
+    <article className={clsx('token-card', className)}>
       <section className="image-container">
         <div className="badge">{getHumanReadableTimeAgo(data.transaction.date)}</div>
 

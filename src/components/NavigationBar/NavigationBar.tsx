@@ -1,31 +1,23 @@
-import { Icon } from 'components/Icon';
+import { IconButton } from 'components/IconButton';
 import { ICON_NAMES } from 'constants/iconNames';
 
 export const NavigationBar = () => {
   return (
-    <section className="navigation-bar">
-      <div className="button-wrapper">
-        <button className="icon-button">
-          <Icon iconName={ICON_NAMES.HOME} size="large" />
-        </button>
+    <section className="navigation-bar" data-testid="navigation-bar">
+      <div className="button-wrapper" data-testid={`${'icon-button-' + ICON_NAMES.HOME}`}>
+        <IconButton iconName={ICON_NAMES.HOME} />
       </div>
 
-      <div className="button-wrapper">
-        <button className="icon-button">
-          <Icon iconName={ICON_NAMES.PROFILE} size="large" />
-        </button>
+      <div className="button-wrapper" data-testid={`${'icon-button-' + ICON_NAMES.PROFILE}`}>
+        <IconButton iconName={ICON_NAMES.PROFILE} />
       </div>
 
-      <div className="button-wrapper">
-        <button className="icon-button">
-          <Icon iconName={ICON_NAMES.EMOJI} size="large" />
-        </button>
+      <div className="button-wrapper" data-testid={`${'icon-button-' + ICON_NAMES.EMOJI}`}>
+        <IconButton iconName={ICON_NAMES.EMOJI} />
       </div>
 
-      <div className="button-wrapper">
-        <button className="icon-button">
-          <Icon iconName={ICON_NAMES.DIAMOND} size="large" />
-        </button>
+      <div className="button-wrapper" data-testid={`${'icon-button-' + ICON_NAMES.DIAMOND}`}>
+        <IconButton iconName={ICON_NAMES.DIAMOND} />
       </div>
     </section>
   );

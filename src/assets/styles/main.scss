@@ -1,8 +1,7 @@
 // Main styles file
 
-// Global styles, variables, and mixins
+// Global styles, variables
 @import "./_variables";
-@import "./_responsive";
 @import "./global";
 
 // Page-specific styles
@@ -16,4 +15,6 @@
 @import "components/StatCard/stat-card.module.scss";
 @import "components/NavigationBar/navigation-bar.module.scss";
 @import "components/Icon/icon.module.scss";
+@import "components/IconButton/icon-button.module.scss";
 @import "components/Spinner/spinner.module.scss";
+@import "components/SearchBar/search-bar.module.scss";

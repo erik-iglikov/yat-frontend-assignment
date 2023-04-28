@@ -1,10 +1,14 @@
 import { NavigationBar } from 'components/NavigationBar';
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+export const Layout = ({ children }: LayoutProps) => {
   return (
     <section className="main-layout">
       <header>
-        <NavigationBar />
+        <NavigationBar data-testid="navigation-bar" />
       </header>
 
       <main>{children}</main>
