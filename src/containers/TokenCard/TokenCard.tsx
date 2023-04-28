@@ -1,10 +1,10 @@
 import { getHumanReadableTimeAgo } from 'utils/getHumanReadableTimeAgo';
 import './token-card.module.scss'
-import {TokenType} from 'types'
+import { TokenType } from 'types'
 import ICON_NAMES from 'constants/iconNames';
 import { Icon } from 'components/Icon';
 
-export const TokenCard = ({ data }: { data: TokenType}) => {
+export const TokenCard = ({ data }: { data: TokenType }) => {
     return (
         <article className="token-card">
             <section className="image-container">
@@ -16,12 +16,12 @@ export const TokenCard = ({ data }: { data: TokenType}) => {
 
                 <section className="sale-badge">
                     <span className="sale-badge-text">
-                        Bought 
-                        {data.transaction.currency.toUpperCase() === 'ETH' && 
-                            <Icon 
+                        Bought
+                        {data.transaction.currency.toUpperCase() === 'ETH' &&
+                            <Icon
                                 iconName={ICON_NAMES.ETH}
-                                size='small'/>
-                        } 
+                                size='small' />
+                        }
                         {data.transaction.amount}
                     </span>
                 </section>

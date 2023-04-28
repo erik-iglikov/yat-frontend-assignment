@@ -1,40 +1,43 @@
-import { TokenType } from "types";
+import { TokenType } from "types/index";
 
 export const filterSortAndPaginateTokens = (
   tokens: TokenType[],
   searchTerm: string,
   sortField: string,
   sortOrder: string,
-  ownerFilter: string | '',
+  ownerFilter: string,
   page: number,
-  pageSize: number) => {
+  pageSize: number
+) => {
+  const filteredTokens = tokens
+    .filter((token) => {
+      const matchesSearchTerm =
+        searchTerm === "" ||
+        token.collection.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesOwnerFilter =
+        ownerFilter === "" || token.owner.yat === ownerFilter;
+      return matchesSearchTerm && matchesOwnerFilter;
+    })
+    .sort((a, b) => {
+      const fieldA = sortField === "amount" ? a.transaction.amount : a.transaction.date;
+      const fieldB = sortField === "amount" ? b.transaction.amount : b.transaction.date;
 
-  // Apply filters
-  let filteredTokens = tokens.filter((token) => {
-    const matchesSearchTerm =
-      !searchTerm ||
-      token.collection.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      token.owner.yat.toLowerCase().includes(searchTerm.toLowerCase());
+      if (fieldA === fieldB) {
+        return 0;
+      } else if (sortOrder === "asc") {
+        return fieldA < fieldB ? -1 : 1;
+      } else {
+        return fieldA > fieldB ? -1 : 1;
+      }
+    });
 
-    const matchesOwnerFilter = !ownerFilter || token.owner.yat === ownerFilter;
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  const paginatedTokens = filteredTokens.slice(start, end);
 
-    return matchesSearchTerm && matchesOwnerFilter;
-  });
-
-  // Apply sorting
-  filteredTokens.sort((a: TokenType, b: TokenType) => {
-    const valueA = (a.transaction as { [key: string]: any })[sortField];
-    const valueB = (b.transaction as { [key: string]: any })[sortField];
-
-    if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
-    if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
-    return 0;
-  });
-
-  // Apply pagination
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const paginatedTokens = filteredTokens.slice(startIndex, endIndex);
-
-  return paginatedTokens;
-}
+  return {
+    tokens: paginatedTokens,
+    total_tokens: filteredTokens.length,
+    next_page: end < filteredTokens.length ? page + 1 : null,
+  };
+};

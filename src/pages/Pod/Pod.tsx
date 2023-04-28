@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useState } from 'react';
+import { useQuery, useInfiniteQuery } from 'react-query';
 
 import { PodInfo } from 'containers/PodInfo';
 import { TokenCard } from 'containers/TokenCard/TokenCard';
@@ -8,7 +8,10 @@ import { PodStats } from 'containers/PodStats';
 import "./pod.module.scss"
 import ICON_NAMES from 'constants/iconNames';
 import { Icon } from 'components/Icon';
-import { useDebounce } from 'utils/useDebounce';
+import { useDebounce } from 'hooks/useDebounce';
+import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
+import { TokenType } from 'types';
+import { Spinner } from 'components/Spinner';
 
 export const Pod = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -16,8 +19,6 @@ export const Pod = () => {
 
     const [sortField, setSortField] = useState('date');
     const [sortOrder, setSortOrder] = useState('asc');
-    const [page, setPage] = useState(1);
-    const [tokens, setTokens] = useState([]);
     const [ownerFilter, setOwnerFilter] = useState('');
 
     const fetchCollection = async () => {
@@ -26,49 +27,46 @@ export const Pod = () => {
         return res.json();
     };
 
-    const fetchTokens = async () => {
+    const fetchTokens = async ({ pageParam = 1 }) => {
         const params = new URLSearchParams({
             search_term: searchTerm,
             sort_field: sortField,
             sort_order: sortOrder,
             owner: ownerFilter,
-            page: page.toString(),
+            page: pageParam.toString(),
         });
 
         const url = `http://mock-server/collection/tokens?${params.toString()}`;
         const res = await fetch(url);
         const data = await res.json();
 
-        return data;
+        return {
+            pages: data.tokens,
+            nextPage: data.next_page
+        };
     };
 
     const collection = useQuery('collection', fetchCollection);
 
-    const tokensQuery = useQuery(['tokens', debouncedSearchTerm, sortField, sortOrder, ownerFilter, page], fetchTokens);
-
-    useEffect(() => {
-        if (collection.isSuccess) {
-            setTokens(collection.data.tokens);
+    const {
+        data: tokens,
+        fetchNextPage,
+        hasNextPage,
+        isLoading: tokensLoading,
+        isFetchingNextPage,
+    } = useInfiniteQuery(
+        ['tokens', debouncedSearchTerm, sortField, sortOrder, ownerFilter],
+        fetchTokens,
+        {
+            getNextPageParam: (lastPage) => lastPage.nextPage,
         }
-    }, [collection]);
+    );
 
-    useEffect(() => {
-        if (tokensQuery.isSuccess) {
-            setTokens(tokensQuery.data);
+    const targetRef = useInfiniteScroll<HTMLDivElement>(() => {
+        if (hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
         }
-    }, [tokensQuery]);
-
-    
-    // // Fetch tokens when searchTerm, sortField or sortOrder changes
-    // useEffect(() => {
-    //     if (debouncedSearchTerm || sortField !== 'date' || sortOrder !== 'asc') {
-    //         tokensQuery.refetch();
-    //     }
-    // }, [debouncedSearchTerm, sortField, sortOrder, tokensQuery]);
-
-    // if (collection.isLoading) {
-    //     return <div>Loading...</div>;
-    // }
+    });
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchTerm(e.target.value);
@@ -83,13 +81,8 @@ export const Pod = () => {
     };
 
     const handleOwnerFilterChange = (owner: string): void => {
-        console.log('owner', owner);
         setOwnerFilter(owner);
     }
-
-    const handlePageChange = (newPage: number): void => {
-        setPage(newPage);
-    };
 
     return (
         <section className='main-page'>
@@ -146,42 +139,27 @@ export const Pod = () => {
                     </section>
                 </section>
             </section>
+            
+            <section className="collection-tokens">
+                {tokensLoading ? (
+                    <div className="loading-spinner">
+                        <Spinner />
+                    </div>
+                ) : (
+                    <>
+                        {tokens?.pages.map((pageData, pageIndex: number) => {
+                            return (pageData.pages.map((token: TokenType, index: number) => (
+                                <TokenCard
+                                    key={`${pageIndex}-${index}`}
+                                    data={token}
+                                />
+                            )))
+                        })}
+                    </>
+                )}
 
-            <section className='collection-tokens'>
-                {
-                    (collection.isLoading || tokensQuery.isLoading) ? (
-                        <div>
-                            <h2>Loading...</h2>
-                        </div>
-                    ) : (
-                        tokens && tokens.map((token: any, index: number) =>
-                            <TokenCard
-                                key={index}
-                                data={token}
-                            />
-                        )
-                    )
-                }
-            </section>
 
-            {/* Add your preferred pagination component here and bind handlePageChange to its onChange event */}
-            {/* You can also use collection.data?.stats to display total pages, total items, etc */}
-            <section className='pagination'>
-                <button
-                    onClick={() => handlePageChange(page - 1)}
-                    disabled={page === 1}
-                >
-                    Previous
-                </button>
-
-                <span>Page {page} of {collection.data?.stats.totalPages}</span>
-
-                <button
-                    onClick={() => handlePageChange(page + 1)}
-                    disabled={page === collection.data?.stats.totalPages}
-                >
-                    Next
-                </button>
+                <div ref={targetRef} style={{ height: 1 }} />
             </section>
         </section>
     );

@@ -32,21 +32,26 @@ export const getPod = rest.get('http://mock-server/collection/pod', (req, res, c
   return res(ctx.status(200), ctx.json(pod))
 })
 
-export const getTokens = rest.get('http://mock-server/collection/tokens', (req, res, ctx) => {
+export const getTokens = rest.get("http://mock-server/collection/tokens", (req, res, ctx) => {
   // Parse request parameters
   const params = new URLSearchParams(req.url.search);
-  const searchTerm = params.get('search_term') || '';
-  const sortField = params.get('sort_field') || 'date';
-  const sortOrder = params.get('sort_order') || 'asc';
-  const ownerFilter = params.get('owner') || '';
-  const page = parseInt(params.get('page') || '1', 12);
-  const pageSize = parseInt(params.get('page_size') || '12', 12); // 12 tokens is 3 rows on desktop
+  const searchTerm = params.get("search_term") || "";
+  const sortField = params.get("sort_field") || "date";
+  const sortOrder = params.get("sort_order") || "asc";
+  const ownerFilter = params.get("owner") || "";
+  const page = parseInt(params.get("page") || "1", 10);
+  const pageSize = parseInt(params.get("page_size") || "12", 10); // 12 tokens is 3 rows on desktop
 
   // Filter, sort, and paginate tokens
-  const filteredTokens = filterSortAndPaginateTokens(tokens, searchTerm, sortField, sortOrder, ownerFilter, page, pageSize);
-
-  return res(
-    ctx.status(200),
-    ctx.json(filteredTokens)
+  const result = filterSortAndPaginateTokens(
+    tokens,
+    searchTerm,
+    sortField,
+    sortOrder,
+    ownerFilter,
+    page,
+    pageSize
   );
+
+  return res(ctx.status(200), ctx.json(result));
 });

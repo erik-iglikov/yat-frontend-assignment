@@ -1,15 +1,21 @@
-import { PodType } from 'types'
-
-import './pod-info.module.scss'
+import { PodType } from 'types';
+import './pod-info.module.scss';
+import { Spinner } from 'components/Spinner';
 
 export const PodInfo = ({ data }: { data: PodType }) => {
     return (
         <article className="pod-info">
             <div className="cover-container">
-                <img
-                    className='cover'
-                    src={data?.cover.url}
-                    alt="Collection cover" />
+
+                {data?.cover.url ? (
+                    <img
+                        className="cover"
+                        src={data?.cover.url}
+                        alt="Collection cover"
+                    />
+                ) : (
+                    <Spinner />
+                )}
             </div>
 
             <div className="content">
@@ -17,5 +23,5 @@ export const PodInfo = ({ data }: { data: PodType }) => {
                 <p className="description">{data?.description}</p>
             </div>
         </article>
-    )
-}
+    );
+};

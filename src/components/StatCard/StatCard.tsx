@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import "./stat-card.module.scss";
+import { Spinner } from "components/Spinner";
 
 type StateCardProps = {
   label: string;
@@ -16,7 +17,7 @@ export const StatCard = ({ label, value, icon }: StateCardProps) => {
 
       <div className="value">
         {icon}
-        <h3>{value?.toLocaleString() || '---'}</h3>
+        <h3>{value?.toLocaleString() || <Spinner size="small"/>}</h3>
       </div>
     </article>
   );
