@@ -36,8 +36,8 @@ export const getTokens = rest.get('http://mock-server/collection/tokens', (req, 
   const searchTerm = params.get('search_term') || '';
   const sortField = params.get('sort_field') || 'date';
   const sortOrder = params.get('sort_order') || 'asc';
-  const page = parseInt(params.get('page') || '1', 16);
-  const pageSize = parseInt(params.get('page_size') || '16', 16); // 16 tokens is 4 rows on desktop
+  const page = parseInt(params.get('page') || '1', 12);
+  const pageSize = parseInt(params.get('page_size') || '12', 12); // 12 tokens is 3 rows on desktop
 
   // Filter, sort, and paginate tokens
   const filteredTokens = filterSortAndPaginateTokens(tokens, searchTerm, sortField, sortOrder, page, pageSize);

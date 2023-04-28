@@ -8,14 +8,17 @@ import { PodStats } from 'containers/PodStats';
 import "./pod.module.scss"
 import ICON_NAMES from 'constants/iconNames';
 import { Icon } from 'components/Icon';
+import { useDebounce } from 'utils/useDebounce';
 
 export const Pod = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const debouncedSearchTerm = useDebounce(searchTerm, 450);
+
     const [sortField, setSortField] = useState('date');
     const [sortOrder, setSortOrder] = useState('asc');
     const [page, setPage] = useState(1);
     const [tokens, setTokens] = useState([]);
-
+    
     const fetchCollection = async () => {
         const url = `http://mock-server/collection/pod`;
         const res = await fetch(url);
@@ -39,7 +42,7 @@ export const Pod = () => {
 
     const collection = useQuery('collectionInfo', fetchCollection);
 
-    const tokensQuery = useQuery(['tokens', searchTerm, sortField, sortOrder, page], fetchTokens);
+    const tokensQuery = useQuery(['tokens', debouncedSearchTerm, sortField, sortOrder, page], fetchTokens);
 
     useEffect(() => {
         if (collection.isSuccess) {
@@ -53,16 +56,17 @@ export const Pod = () => {
         }
     }, [tokensQuery]);
 
+    
     // Fetch tokens when searchTerm, sortField or sortOrder changes
     useEffect(() => {
-        if (searchTerm || sortField !== 'date' || sortOrder !== 'asc') {
+        if (debouncedSearchTerm || sortField !== 'date' || sortOrder !== 'asc') {
             tokensQuery.refetch();
         }
-    }, [searchTerm, sortField, sortOrder]);
+    }, [debouncedSearchTerm, sortField, sortOrder]);
 
-    if (collection.isLoading) {
-        return <div>Loading...</div>;
-    }
+    // if (collection.isLoading) {
+    //     return <div>Loading...</div>;
+    // }
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchTerm(e.target.value);
